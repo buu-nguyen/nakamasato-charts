@@ -12,6 +12,7 @@ controllerManager:
   manager:
     image:
       repository: ghcr.io/nakamasato/mysql-operator
+      pullPolicy: IfNotPresent
     resources:
       limits:
         cpu: 200m
@@ -19,6 +20,10 @@ controllerManager:
       requests:
         cpu: 100m
         memory: 20Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+  podSecurityContext:
+    runAsNonRoot: true
   replicas: 1
 managerConfig:
   controllerManagerConfigYaml:
